@@ -11,7 +11,7 @@ class PhotoRepo {
     private val unsplashApi : UnsplashApi
     init {
         val retrofit: Retrofit = Retrofit.Builder()
-            .baseUrl("https://api.unsplah.com/")
+            .baseUrl("https://api.unsplash.com/")
             .addConverterFactory(MoshiConverterFactory.create())
             .build()
         unsplashApi = retrofit.create()
