@@ -19,8 +19,5 @@ class MainActivity : AppCompatActivity()  {
           val response = photoRepo.photoFetch()
             Log.d(TAG , "$response")
         }
-
-}
-
-
+    }
 }

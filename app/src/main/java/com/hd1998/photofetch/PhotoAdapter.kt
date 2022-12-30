@@ -16,8 +16,13 @@ class PhotoHolder(
     }
 }
 
-class PhotoAdapter(private val photos : List<PhotoItem>) : RecyclerView.Adapter<PhotoHolder>() {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotoHolder {
+class PhotoAdapter(
+    private val photos : List<PhotoItem>) :
+    RecyclerView.Adapter<PhotoHolder>()
+{ override fun onCreateViewHolder(
+    parent: ViewGroup,
+    viewType: Int
+): PhotoHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding =ListItemGalleryBinding.inflate(inflater , parent , false)
         return PhotoHolder(binding)
