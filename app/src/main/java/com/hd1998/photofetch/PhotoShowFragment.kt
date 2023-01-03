@@ -1,5 +1,6 @@
 package com.hd1998.photofetch
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,18 +12,19 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.GridLayoutManager
 import com.hd1998.photofetch.databinding.FragmentPhotoGallaryBinding
 import kotlinx.coroutines.launch
+private const val TAG="PhotoShowFragment"
 
 class PhotoShowFragment : Fragment() {
 
     private var _binding : FragmentPhotoGallaryBinding? = null
     private val binding get() = _binding!!
 
-    val photoViewModel : PhotoViewModel by viewModels()
+  private val photoViewModel : PhotoViewModel by viewModels()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentPhotoGallaryBinding.inflate(inflater  , container  , false)
         binding.photoGrid.layoutManager = GridLayoutManager(context, 3)
         return binding.root
@@ -32,8 +34,9 @@ class PhotoShowFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewLifecycleOwner.lifecycleScope.launch{
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED){
-                photoViewModel.uiState.collect{ it
+                photoViewModel.uiState.collect{
                     binding.photoGrid.adapter=PhotoAdapter(it.photoItems)
+                    Log.d(TAG , "$it")
                 }
             }
         }

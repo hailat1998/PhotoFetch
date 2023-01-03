@@ -16,5 +16,5 @@ class PhotoRepo {
             .build()
         unsplashApi = retrofit.create()
     }
-    suspend fun photoFetch() : Photos = unsplashApi.fetchPhotos()
+    suspend fun photoFetch() : List<PhotoItem> = unsplashApi.fetchPhotos()
 }
