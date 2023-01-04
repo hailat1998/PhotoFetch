@@ -12,7 +12,7 @@ class PhotoHolder(
     private val binding: ListItemGalleryBinding
 ) : RecyclerView.ViewHolder(binding.root) {
     fun bind(photoItem: PhotoItem) {
-        binding.itemImageView.load(photoItem.url)
+        binding.itemImageView.load(photoItem.urls.url_s)
     }
 }
 

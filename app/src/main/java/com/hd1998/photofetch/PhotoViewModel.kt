@@ -21,12 +21,15 @@ class PhotoViewModel : ViewModel() {
     init {
         try{
         viewModelScope.launch {
-          val item = photoRepo.photoFetch().photoItems
+          val item = photoRepo.photoFetch()
             _uistate.update { oldState -> oldState.copy(photoItems = item)
             }
         }
         }
-    catch(e : java.lang.Exception){}}
+    catch(e : java.lang.Exception){
+
+
+    }}
 
     }
 
