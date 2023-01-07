@@ -65,18 +65,10 @@ class PhotoShowFragment : Fragment() {
                  photoViewModel.fetchPhoto(query)
                 return true
             }
-        })
-
-    @Deprecated("Deprecated in Java", ReplaceWith(
-        "super.onCreateOptionsMenu(menu, inflater)",
-        "androidx.fragment.app.Fragment"
-    )
-    )
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
+        })}}
 
 
-    }
+
 
     override fun onDestroy() {
         super.onDestroy()
