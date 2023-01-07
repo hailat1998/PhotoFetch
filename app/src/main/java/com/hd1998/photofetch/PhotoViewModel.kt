@@ -21,7 +21,7 @@ class PhotoViewModel : ViewModel() {
     init {
         try{
         viewModelScope.launch {
-          val item = photoRepo.photoFetch()
+          val item = fetchPhoto("")
             _uistate.update { oldState -> oldState.copy(photoItems = item)
             }
         }
@@ -30,7 +30,12 @@ class PhotoViewModel : ViewModel() {
 
 
     }}
-
+   suspend fun fetchPhoto(query : String) : List<PhotoItem> {
+       if(!query.isEmpty()){
+         return photoRepo.photoSearch()
+       }
+       return photoRepo.photoFetch()
+   }
     }
 
 data class PhotoUIState(val photoItems: List<PhotoItem> = listOf())
