@@ -1,6 +1,11 @@
 <resources>
     <string name="app_name">PhotoFetch</string>
     <string name="random">random</string>
+
     <string name="menu_title">search</string>
     <string name="clear_title">clear</string>
+    
+    <string name="clear">clear</string>
+    <string name="search">Search</string>
+
 </resources>

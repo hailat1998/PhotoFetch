@@ -2,6 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+
 <item android:id="@+id/search_photo"
     android:title="@string/menu_title"
       app:actionViewClass="androidx.appcompat.widget.SearchView"
@@ -10,4 +11,13 @@
     android:id="@+id/clear_text"
     android:title="@string/clear_title"
     app:showAsAction="never"/>
+
+    <item android:id="@+id/menu_item_search"
+        android:title="@string/search"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:showAsAction="ifRoom" />
+    <item android:id="@+id/menu_item_clear"
+        android:title="@string/clear"
+        app:showAsAction="never" />
+
 </menu>

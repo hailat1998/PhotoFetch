@@ -2,7 +2,10 @@ package com.hd1998.photofetch
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+
 import androidx.appcompat.widget.SearchView
+
+
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -19,6 +22,13 @@ class PhotoShowFragment : Fragment() {
     private val binding get() = _binding!!
   private var searchView : SearchView? = null
   private val photoViewModel : PhotoViewModel by viewModels()
+
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+  setHasOptionsMenu(true)
+    }
+
 
 
     override fun onCreateView(
@@ -43,6 +53,7 @@ class PhotoShowFragment : Fragment() {
         }
     }
 
+
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         val inflater: MenuInflater = MenuInflater(context)
         inflater.inflate(R.menu.fragment_photo_show, menu)
@@ -55,6 +66,16 @@ class PhotoShowFragment : Fragment() {
                 return true
             }
         })
+
+    @Deprecated("Deprecated in Java", ReplaceWith(
+        "super.onCreateOptionsMenu(menu, inflater)",
+        "androidx.fragment.app.Fragment"
+    )
+    )
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+
+
     }
 
     override fun onDestroy() {
