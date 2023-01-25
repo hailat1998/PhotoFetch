@@ -8,7 +8,6 @@ import okhttp3.Response
 class PhotoInterceptor: Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
      val originalRequest : Request = chain.request()
-
         val newURL : HttpUrl= originalRequest.url.newBuilder()
             .addQueryParameter("client_id" , API_KEY)
             .addQueryParameter("page" , "2")

@@ -23,13 +23,10 @@ class PhotoShowFragment : Fragment() {
   private var searchView : SearchView? = null
   private val photoViewModel : PhotoViewModel by viewModels()
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-  //setHasOptionsMenu(true)
+  setHasOptionsMenu(true)
     }
-
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -62,7 +59,7 @@ class PhotoShowFragment : Fragment() {
         searchView?.setOnQueryTextListener(object:SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String ): Boolean {
 
-               lifecycleScope.launch( ) {
+               lifecycleScope.launch{
 
                        photoViewModel.fetchPhoto(query)
                    }
@@ -79,7 +76,7 @@ class PhotoShowFragment : Fragment() {
     @Deprecated("Deprecated in Java")
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when(item.itemId){
-           R.id.clear_text-> {lifecycleScope.launch(){photoViewModel.fetchPhoto("")}
+           R.id.clear_text-> {lifecycleScope.launch{photoViewModel.fetchPhoto("")}
             return true}
 
         else -> super.onOptionsItemSelected(item)  }
