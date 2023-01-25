@@ -5,6 +5,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hd1998.photofetch.api.PhotoItem
 import com.hd1998.photofetch.api.Photos
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -30,10 +32,11 @@ class PhotoViewModel : ViewModel() {
 
 
     }}
-   suspend fun fetchPhoto(query : String) : List<PhotoItem> {
-       if(!query.isEmpty()){
-         return photoRepo.photoSearch()
-       }
+   suspend fun fetchPhoto(query : String = "") : List<PhotoItem> {
+
+          if(!query.isEmpty()){
+        return photoRepo.photoSearch()   }
+
        return photoRepo.photoFetch()
    }
     }
