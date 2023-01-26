@@ -6,8 +6,6 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.hd1998.photofetch.api.PhotoItem
 import com.hd1998.photofetch.databinding.ListItemGalleryBinding
-
-
 class PhotoHolder(
     private val binding: ListItemGalleryBinding
 ) : RecyclerView.ViewHolder(binding.root) {
@@ -15,7 +13,6 @@ class PhotoHolder(
         binding.itemImageView.load(photoItem.urls.url_s)
     }
 }
-
 class PhotoAdapter(
     private val photos : List<PhotoItem>) :
     RecyclerView.Adapter<PhotoHolder>()
@@ -27,11 +24,9 @@ class PhotoAdapter(
         val binding =ListItemGalleryBinding.inflate(inflater , parent , false)
         return PhotoHolder(binding)
     }
-
     override fun onBindViewHolder(holder: PhotoHolder, position: Int) {
         val item= photos[position]
         holder.bind(item)
     }
-
     override fun getItemCount() = photos.size
 }

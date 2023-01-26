@@ -19,7 +19,7 @@ class PhotoViewModel : ViewModel() {
     init {
         try{
         viewModelScope.launch {
-          val item = fetchPhoto("office")
+          val item = fetchPhoto("")
             _uistate.update { oldState -> oldState.copy(photoItems = item)
             }
         }
