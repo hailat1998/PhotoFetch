@@ -12,14 +12,14 @@ import kotlinx.coroutines.launch
 
 @SuppressLint("SuspiciousIndentation")
 class PhotoViewModel : ViewModel() {
-   val photoRepo : PhotoRepo = PhotoRepo()
-    var _uistate : MutableStateFlow<PhotoUIState> = MutableStateFlow(PhotoUIState())
+  private val photoRepo : PhotoRepo = PhotoRepo()
+    private  var _uistate : MutableStateFlow<PhotoUIState> = MutableStateFlow(PhotoUIState())
     val uiState : StateFlow<PhotoUIState>
     get() =_uistate .asStateFlow()
     init {
         try{
         viewModelScope.launch {
-          val item = fetchPhoto("")
+          val item = fetchPhoto("office")
             _uistate.update { oldState -> oldState.copy(photoItems = item)
             }
         }

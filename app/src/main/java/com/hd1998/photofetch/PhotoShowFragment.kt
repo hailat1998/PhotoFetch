@@ -19,7 +19,7 @@ private const val TAG="PhotoShowFragment"
 class PhotoShowFragment : Fragment() {
 
     private var _binding : FragmentPhotoGallaryBinding? = null
-    private val binding get() = _binding!!
+    private val binding get() = checkNotNull(_binding){ }
   private var searchView : SearchView? = null
   private val photoViewModel : PhotoViewModel by viewModels()
 
@@ -27,7 +27,6 @@ class PhotoShowFragment : Fragment() {
         super.onCreate(savedInstanceState)
   setHasOptionsMenu(true)
     }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -54,7 +53,7 @@ class PhotoShowFragment : Fragment() {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         val inflater = MenuInflater(context)
         inflater.inflate(R.menu.fragment_photo_show, menu)
-     val searchItem=menu.findItem(R.id.search_photo)
+     val searchItem=menu.findItem(R.id.menu_item_search)
         searchView=searchItem as? SearchView
         searchView?.setOnQueryTextListener(object:SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String ): Boolean {
@@ -76,15 +75,11 @@ class PhotoShowFragment : Fragment() {
     @Deprecated("Deprecated in Java")
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when(item.itemId){
-           R.id.clear_text-> {lifecycleScope.launch{photoViewModel.fetchPhoto("")}
+           R.id.menu_item_clear-> {lifecycleScope.launch{photoViewModel.fetchPhoto("")}
             return true}
 
         else -> super.onOptionsItemSelected(item)  }
     }
-
-
-
-
     override fun onDestroy() {
         super.onDestroy()
         _binding = null

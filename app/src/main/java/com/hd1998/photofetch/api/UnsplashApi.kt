@@ -8,6 +8,6 @@ interface UnsplashApi {
     "client_id=$API_KEY")
     suspend fun fetchPhotos(): List<PhotoItem>
     @GET("search/photos/?"+
-    "client_id=$API_KEY")
+    "client_id=$API_KEY"+"&")
     suspend fun searchPhoto(@Query("text") query : String? ) : List<PhotoItem>
 }
