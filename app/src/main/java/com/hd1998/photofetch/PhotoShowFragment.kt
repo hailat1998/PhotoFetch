@@ -42,13 +42,12 @@ class PhotoShowFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch{
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED){
                 photoViewModel.uiState.collect{
-                    binding.photoGrid.adapter=PhotoAdapter(it.photoItems)
+                    binding.photoGrid.adapter=updateUI(it)
                     Log.d(TAG , "$it")
                 }
             }
         }
     }
-
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         val inflater = MenuInflater(context)
@@ -59,8 +58,7 @@ class PhotoShowFragment : Fragment() {
             override fun onQueryTextSubmit(query: String ): Boolean {
 
                lifecycleScope.launch{
-
-                       photoViewModel.fetchPhoto(query)
+                   photoViewModel.fetchPhoto(query)
                    }
                 return true
             }
@@ -70,6 +68,7 @@ class PhotoShowFragment : Fragment() {
             }
 
         })
+
     }
 
     @Deprecated("Deprecated in Java")
@@ -84,4 +83,11 @@ class PhotoShowFragment : Fragment() {
         super.onDestroy()
         _binding = null
     }
+    suspend fun updateUI(photoUIState: PhotoUIState) : PhotoAdapter{
+        val photoAdapter : PhotoAdapter = PhotoAdapter(photoUIState.photoItems)
+       if(photoAdapter.itemCount % 10 == 0){
+          photoViewModel.fetchPhoto("")
+      updateUI(photoUIState)
+       }
+    return photoAdapter }
 }

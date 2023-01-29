@@ -11,7 +11,6 @@ import retrofit2.create
 
 class PhotoRepo {
     private val unsplashApi : UnsplashApi
-
     init {
         val okHttpClient = OkHttpClient.Builder()
             .addInterceptor(PhotoInterceptor())
@@ -24,5 +23,5 @@ class PhotoRepo {
         unsplashApi = retrofit.create()
     }
     suspend fun photoFetch() : List<PhotoItem> = unsplashApi.fetchPhotos()
-    suspend fun photoSearch(query : String) : List<PhotoItem> =  unsplashApi.searchPhoto(query)
+    suspend fun photoSearch(query : String) : List<PhotoItem> =  unsplashApi.searchPhoto(query).photoItems
 }

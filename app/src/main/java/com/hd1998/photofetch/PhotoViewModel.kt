@@ -19,16 +19,16 @@ class PhotoViewModel : ViewModel() {
     init {
         try{
         viewModelScope.launch {
-          val item = fetchPhoto("")
-            _uistate.update { oldState -> oldState.copy(photoItems = item)
+          val item = fetchPhoto("office")
+            _uistate.update {
+                    oldState -> oldState.copy(photoItems = item)
             }
         }
         }
     catch(e : java.lang.Exception){
     }}
    suspend fun fetchPhoto(query : String = "") : List<PhotoItem> {
-
-          if(!query.isEmpty()){
+       if(!query.isEmpty()){
         return photoRepo.photoSearch(query)   }
        return photoRepo.photoFetch()
    }
