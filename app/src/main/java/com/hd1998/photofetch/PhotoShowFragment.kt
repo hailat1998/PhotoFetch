@@ -2,9 +2,9 @@ package com.hd1998.photofetch
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.widget.Toast
 
 import androidx.appcompat.widget.SearchView
-
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -14,6 +14,8 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.GridLayoutManager
 import com.hd1998.photofetch.databinding.FragmentPhotoGallaryBinding
 import kotlinx.coroutines.launch
+
+
 private const val TAG="PhotoShowFragment"
 
 class PhotoShowFragment : Fragment() {
@@ -26,6 +28,8 @@ class PhotoShowFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
   setHasOptionsMenu(true)
+
+
     }
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,6 +43,14 @@ class PhotoShowFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.toolbar.inflateMenu(R.menu.fragment_photo_show)
+        binding.toolbar.setOnMenuItemClickListener {
+            when(it.itemId){
+                R.id.menu_item_search ->  true
+                R.id.menu_item_clear -> true
+                else -> false
+            }
+        }
         viewLifecycleOwner.lifecycleScope.launch{
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED){
                 photoViewModel.uiState.collect{
@@ -83,11 +95,8 @@ class PhotoShowFragment : Fragment() {
         super.onDestroy()
         _binding = null
     }
-    suspend fun updateUI(photoUIState: PhotoUIState) : PhotoAdapter{
-        val photoAdapter : PhotoAdapter = PhotoAdapter(photoUIState.photoItems)
-       if(photoAdapter.itemCount % 10 == 0){
-          photoViewModel.fetchPhoto("")
-      updateUI(photoUIState)
-       }
-    return photoAdapter }
+    private fun updateUI(photoUIState: PhotoUIState) : PhotoAdapter{
+        val photoAdapter = PhotoAdapter(photoUIState.photoItems ){
+            Toast.makeText( requireContext() , "say" , Toast.LENGTH_SHORT).show() }
+        return photoAdapter }
 }
