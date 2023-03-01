@@ -27,6 +27,7 @@ class PhotoViewModel : ViewModel() {
         }
     catch(e : java.lang.Exception){
     }}
+
    suspend fun fetchPhoto(query : String = "") : List<PhotoItem> {
        if(!query.isEmpty()){
         return photoRepo.photoSearch(query)   }

@@ -9,7 +9,7 @@ import com.hd1998.photofetch.databinding.ListItemGalleryBinding
 class PhotoHolder(
     private val binding: ListItemGalleryBinding
 ) : RecyclerView.ViewHolder(binding.root ) {
-    fun bind(photoItem: PhotoItem , onPhotoItemClicked: (id : String) -> Unit) {
+    fun bind(photoItem: PhotoItem , onPhotoItemClicked: (ids : String) -> Unit) {
         binding.itemImageView.load(photoItem.urls.url_s)
     }
 }
