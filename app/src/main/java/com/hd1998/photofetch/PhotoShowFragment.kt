@@ -67,6 +67,7 @@ class PhotoShowFragment : Fragment() {
         searchView=searchItem as? SearchView
         searchView?.setOnQueryTextListener(object:SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String ): Boolean {
+       photoViewModel.search(query)
       return true }
 
             override fun onQueryTextChange(newText: String?): Boolean {
@@ -109,10 +110,8 @@ class PhotoShowFragment : Fragment() {
     }*/
     private fun updateUI(photoUIState: PhotoUIState) : PhotoAdapter{
         val photoAdapter = PhotoAdapter(photoUIState.photoItems ){
-            Toast.makeText( requireContext() , it , Toast.LENGTH_SHORT).show() }
+             }
         return photoAdapter }
-    fun clearToolbarMenu() {
-        binding.toolbar.menu.clear()
-    }
+
 
 }

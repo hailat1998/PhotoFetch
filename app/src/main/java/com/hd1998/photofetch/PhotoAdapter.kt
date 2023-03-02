@@ -9,12 +9,12 @@ import com.hd1998.photofetch.databinding.ListItemGalleryBinding
 class PhotoHolder(
     private val binding: ListItemGalleryBinding
 ) : RecyclerView.ViewHolder(binding.root ) {
-    fun bind(photoItem: PhotoItem , onPhotoItemClicked: (ids : String) -> Unit) {
+    fun bind(photoItem: PhotoItem , onItemClicked: (PhotoItem) -> Unit) {
         binding.itemImageView.load(photoItem.urls.url_s)
     }
 }
 class PhotoAdapter(
-    private val photos : List<PhotoItem>  , private val onPhotoItemClicked : (ids : String) -> Unit) :
+    private val photos : List<PhotoItem>  , private val onItemClicked : (PhotoItem) -> Unit) :
     RecyclerView.Adapter<PhotoHolder>()
 { override fun onCreateViewHolder(
     parent: ViewGroup,
@@ -26,7 +26,7 @@ class PhotoAdapter(
     }
     override fun onBindViewHolder(holder: PhotoHolder, position: Int) {
         val item= photos[position]
-        holder.bind( item ,  onPhotoItemClicked )
+        holder.bind( item,  onItemClicked )
     }
     override fun getItemCount() = photos.size
 }
