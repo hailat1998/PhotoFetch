@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.hd1998.photofetch.databinding.FragmentPhotoGallaryBinding
 import kotlinx.coroutines.launch
@@ -110,7 +111,7 @@ class PhotoShowFragment : Fragment() {
     }*/
     private fun updateUI(photoUIState: PhotoUIState) : PhotoAdapter{
         val photoAdapter = PhotoAdapter(photoUIState.photoItems ){
-             }
+           findNavController().navigate()}
         return photoAdapter }
 
 
