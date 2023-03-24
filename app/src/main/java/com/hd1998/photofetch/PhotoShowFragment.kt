@@ -56,8 +56,7 @@ class PhotoShowFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch{
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED){
                 photoViewModel.uiState.collect{
-                    binding.photoGrid.adapter=updateUI(it)
-                    Log.d(TAG , "$it")
+                    binding.photoGrid.adapter= updateUI(it)
                 }
             }
         }
@@ -68,11 +67,13 @@ class PhotoShowFragment : Fragment() {
         searchView=searchItem as? SearchView
         searchView?.setOnQueryTextListener(object:SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String ): Boolean {
-       photoViewModel.search(query)
+
+                Log.d(TAG, "$query")
       return true }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                TODO("Not yet implemented")
+                Log.d(TAG, "$newText")
+                return false
             }})}
 
             /*  override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -111,8 +112,6 @@ class PhotoShowFragment : Fragment() {
     }*/
     private fun updateUI(photoUIState: PhotoUIState) : PhotoAdapter{
         val photoAdapter = PhotoAdapter(photoUIState.photoItems ){
-           findNavController().navigate()}
+             findNavController().navigate()}
         return photoAdapter }
-
-
 }

@@ -1,26 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/photoShowFragment">
-
-    <fragment
-        android:id="@+id/photoShowFragment"
-        android:name="com.hd1998.photofetch.PhotoShowFragment"
-        android:label="PhotoShowFragment" >
-        <action
-            android:id="@+id/photoShowFragmentToPhotoDialog"
-            app:destination="@id/photoDialog" />
-    </fragment>
     <dialog
         android:id="@+id/photoDialog"
         android:name="com.hd1998.photofetch.PhotoDialog"
         android:label="PhotoDialog" >
-        <argument
-            android:name="ids"
-            app:argType="com.hd1998.photofetch.api.PhotoItem" />
+        <argument android:name="Urs"
+            android:defaultValue=""
+            app:argType="String"/>
         <action
-            android:id="@+id/photoDialogToPhotoShowFragment"
+            android:id="@+id/PhotoDialogToPhotoShowFragment"
             app:destination="@id/photoShowFragment" />
+
     </dialog>
+    <fragment
+        android:id="@+id/photoShowFragment"
+        android:name="com.hd1998.photofetch.PhotoShowFragment"
+        android:label="PhotoShowFragment" >
+        <argument android:name="urls"
+            android:defaultValue=""
+            app:argType="java.lang.String"/>
+        <action
+            android:id="@+id/PhotoShowFragmentToPhotoDialog"
+            app:destination="@id/photoDialog" />
+    </fragment>
 </navigation>
