@@ -67,7 +67,7 @@ class PhotoShowFragment : Fragment() {
         searchView=searchItem as? SearchView
         searchView?.setOnQueryTextListener(object:SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String ): Boolean {
-
+   photoViewModel.setSearch(query)
                 Log.d(TAG, "$query")
       return true }
 
@@ -105,13 +105,13 @@ class PhotoShowFragment : Fragment() {
             return true}
 
         else -> super.onOptionsItemSelected(item)  }
-    }
+    }*/
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
-    }*/
+    }
     private fun updateUI(photoUIState: PhotoUIState) : PhotoAdapter{
         val photoAdapter = PhotoAdapter(photoUIState.photoItems ){
-             findNavController().navigate()}
+             findNavController().navigate(PhotoShowFragmentDirections.PhotoShowFragmentToPhotoDialog())}
         return photoAdapter }
 }

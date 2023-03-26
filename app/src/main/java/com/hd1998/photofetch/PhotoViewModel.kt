@@ -27,6 +27,12 @@ class PhotoViewModel : ViewModel() {
         }
     catch(e : java.lang.Exception){
     }}
+    fun setSearch(query:String){
+       viewModelScope.launch {   val item=fetchPhoto(query)
+        _uistate.update {
+                oldState -> oldState.copy(photoItems = item)
+        }}
+    }
 
    suspend fun fetchPhoto(query : String = "") : List<PhotoItem> {
        if(!query.isEmpty()){

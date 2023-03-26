@@ -27,9 +27,7 @@ class PhotoDialog:DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.photoDialog.load(args.toBundle().toString()){R.drawable.ic_launcher_background}
-        binding.photoDialog.setOnClickListener {findNavController().navigate(PhotoDialogDirections.photoDialogToPhotoShowFragment()) }
+        binding.photoDialog.setOnClickListener {findNavController().navigate(PhotoDialogDirections.returnPhoto()) }
     }
-   companion object{
-       const val TAG="PHOTODIALOG"
-   }
+
 }
